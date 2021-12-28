@@ -14,7 +14,7 @@ class Order {
     public function __construct(int $id, string $clientName, string $clientEmail,
             DateTime $departureDate, string $destination, string $journeyForm,
             string $vehicle, array $additionalServices, 
-            DateTime $creationDate = new DateTime(), DateTime $lastUpdatedDate = null
+            DateTime $creationDate, DateTime $lastUpdatedDate
             ) {
         $this->id = $id;
         $this->clientName = $clientName;
