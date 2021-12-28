@@ -1,0 +1,58 @@
+Projekt zrobię bez użycia MVC / Laravela.
+Wykorzystam stronki z poprzedniego semestru - jest tam gotowa nawigacja i formularz.
+
+Najważniejsze featury:
+1. Strony synchroniczne (bez fetch API).
+2. Funkcjonalności będą dostępne dla **zalogowanych** użytkowników (podział na usera i admina).
+3. User będzie mógł zamówić przejazd wykorzystując formularz z poprzedniego semestru, oraz mieć podgląd swoich zamówień **wraz z możliwością edycji** (szczegóły zamówienia, data, status).
+4. Admin będzie miał możliwość podglądu wszystkich zamówień w systemie, usuwanie zamówień, zmianę treści oraz zmianę statusu.
+5. FIltrowanie zamówień na podstawie nazwy klienta, nazwy miejsca docelowego.
+
+
+Najważniejsze wymagania techniczne:
+1. Odpięcie local storage z poprzednich lab.
+2. Utworzenie strony logowania (wraz z ostylowaniem).
+3. Obsługa mechanizmu sesji - w sesji będzie informacja o zalogowanym użytkowniku (jego ID).
+4. Wyświetlenie belki mówiącej, czy użytkownik jest zalogowany czy nie.
+5. Jeżeli użytkownik jest zalogowany to ma możliwość przeglądania i składania zamówień.
+6. Jeżeli użytkownik jest adminem ma dostępny panel zarządzania zamówieniami.
+7. Zostaną użyte zabezpieczenia przed atakami (SQL Injection, filtry itd).
+
+
+Obsługa operacji CRUD:
+Zostanie stworzone przejrzyste API do obsługi operacji na bazie (kody SQL będą schowane w środku metod, bez żadnych querystringów w parametrach) np. getOrdersByUserId(int userId).
+Operacje na bazie:
+- sprawdzenie czy użytkownik jest zalogowany
+- sprawdzenie czy użytkownik jest adminem (na podstawie ID)
+- utworzenie zamówienia
+- edycja zamówienia o podanym ID
+- usunięcie zamówienia o podanym ID
+- wyświetlenie wszystkich zamówień 
+- wyświetlenie zamówień o ID konkretnego klienta
+- wyświetlenie zamówień o podanej nazwie miejsca lub klienta
+
+Klasy domenowe w projekcie:
+1. class User
+	id: int
+	login: string
+	password: string
+	email: string
+	isAdmin: bool
+	creationDate: datetime
+2. class Order
+	id: int
+	clientName: string
+	clientEmail: string
+	departureDate: datetime
+	destination: string
+	journeyForm: string
+	vehicle: string
+	additionalServices: string[]
+	creationDate: datetime
+	lastUpdateDate: datetime
+	
+Tabele pomocnicze (na bazie):
+1. logged_in_users
+	userId: int
+	sessionId: int
+	lastUpdateDate: datetime
