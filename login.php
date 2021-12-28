@@ -63,7 +63,7 @@
                             <input type="text" class="form-control mb-3" id="password" name="password" placeholder="Hasło">
                             <!-- submit -->
                             <div class="row"></div>
-                            <input type="submit" id="login" name="login" value="Zaloguj się" class="btn btn-primary mt-3">
+                            <input type="submit" id="login" name="login" value="Zaloguj" class="btn btn-primary mt-3">
                         </form>
                     </div>
                 </div>
