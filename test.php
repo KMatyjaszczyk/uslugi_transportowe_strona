@@ -2,6 +2,8 @@
 include_once './classes/model/User.php';
 include_once './classes/model/Order.php';
 include_once './classes/model/LoggedInUser.php';
+include_once './classes/repository/DbConfiguration.php';
+include_once './classes/repository/UserRepository.php';
 
 echo "TEST USER<br>";
 $testUser = new User(1, 'admin', 'admin', 'admin@admin.pl', true);
@@ -19,3 +21,7 @@ echo "TEST LOGGED IN USER<br>";
 $testLoggedInUser = new LoggedInUser('abc123', 1, new DateTime('2021/12/29 00:00:00'));
 var_dump($testLoggedInUser);
 echo "<br><br>";
+
+echo "TEST OPEN USER REPOSITORY<br>";
+$testUserRepository = new UserRepository();
+var_dump($testUserRepository);

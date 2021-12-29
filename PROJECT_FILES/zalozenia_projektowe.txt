@@ -61,8 +61,9 @@ TODO:
 +1. Zrób stronę z formularzem logowania
 +2. Utwórz klasy domenowe w PHP
 +3. Utwórz bazę danych i tabelki
-4. Skopiuj skrypt do utworzenia bazy
-5. Utwórz klasy repozytorium do wykonywania operacji CRUDowych na obiektach
++4. Skopiuj skrypt do utworzenia bazy
++5. Utwórz klasy repozytorium do wykonywania operacji CRUDowych na obiektach
+6. Napisz repozytoria i je przetestuj.
 
 
 zahaszowne hasło 'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
