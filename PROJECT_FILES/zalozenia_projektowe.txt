@@ -66,4 +66,6 @@ TODO:
 6. Napisz repozytoria i je przetestuj.
 
 
-zahaszowne hasło 'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
+zahaszowne hasła do testów: 
+	'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
+	'kowalsky123': $2y$10$yIKWz6i/AtaRNewXJiheZ.UEGAIDiOnahYWqMfhnLXatPxS7QuDh6

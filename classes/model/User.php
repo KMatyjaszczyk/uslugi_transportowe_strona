@@ -1,13 +1,13 @@
 <?php
 class User {
-    protected int $id;
+    protected ?int $id;
     protected string $login;
     protected string $password;
     protected string $email;
     protected bool $isAdmin;
     protected DateTime $creationDate;
 
-    public function __construct(int $id, string $login, string $password, string $email, bool $isAdmin = false, DateTime $creationDate) {
+    public function __construct(?int $id, string $login, string $password, string $email, bool $isAdmin = false, DateTime $creationDate) {
         $this->id = $id;
         $this->login = $login;
         $this->password = password_hash($password, PASSWORD_BCRYPT);

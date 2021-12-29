@@ -19,7 +19,7 @@ class UserRepository {
             exit();
         }
 
-        // FOR TESTS
+        // For test purposes
         echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
             . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
             . ', ' . DbConfiguration::$DB_PORT . '<br>';
@@ -54,6 +54,26 @@ class UserRepository {
         }
     }
 
-    
+    public function create(User $user): void {
+        $preparedLogin = $user->getLogin();
+        $preparedPassword = $user->getPassword();
+        $preparedEmail = $user->getEmail();
+        $preparedIsAdmin = $user->getIsAdmin();
+        $preparedCreationDate = $user->getCreationDate()->format('Y-m-d H:i:s');
+
+        $statement = $this->connection->prepare(
+            "INSERT INTO `users`
+            (`login`, `password`, `email`, `isAdmin`, `creationDate`)
+            VALUES
+            (?, ?, ?, ?, ?)"
+        );
+        $statement->bind_param("sssis", $preparedLogin, $preparedPassword, $preparedEmail, $preparedIsAdmin, $preparedCreationDate);
+        
+        if (!$statement->execute()) {
+            echo "Failure on saving user to database<br>";
+        } else {
+            echo "User created successfully!<br>"; // For test purposes
+        }
+    }
 
 }
