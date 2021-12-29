@@ -10,7 +10,7 @@ class LoggedInUser {
         $this->lastUpdateDate = $lastUpdateDate;
     }
 
-    public function getSessionId(): int {
+    public function getSessionId(): string {
         return $this->sessionId;
     }
 

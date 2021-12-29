@@ -39,7 +39,7 @@ class UserRepository {
         $statement->execute();
         $result = $statement->get_result();
         $userFromResult = $result->fetch_object();
-        var_dump($userFromResult);
+        var_dump($userFromResult); // For test purposes
         if ($userFromResult === null) {
             return null;
         } else {
@@ -73,8 +73,8 @@ class UserRepository {
             echo "Failure on saving user to database<br>";
             return false;
         } else {
-            return true;
             echo "User created successfully!<br>"; // For test purposes
+            return true;
         }
     }
 
