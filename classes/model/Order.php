@@ -1,6 +1,6 @@
 <?php
 class Order {
-    protected int $id;
+    protected ?int $id;
     protected string $clientName;
     protected string $clientEmail;
     protected DateTime $departureDate;
@@ -8,13 +8,13 @@ class Order {
     protected string $journeyForm;
     protected string $vehicle;
     protected array $additionalServices;
-    protected DateTime $creationDate;
-    protected DateTime $lastUpdatedDate;
+    protected ?DateTime $creationDate;
+    protected ?DateTime $lastUpdatedDate;
 
-    public function __construct(int $id, string $clientName, string $clientEmail,
+    public function __construct(?int $id, string $clientName, string $clientEmail,
             DateTime $departureDate, string $destination, string $journeyForm,
             string $vehicle, array $additionalServices, 
-            DateTime $creationDate, DateTime $lastUpdatedDate
+            ?DateTime $creationDate, ?DateTime $lastUpdatedDate
             ) {
         $this->id = $id;
         $this->clientName = $clientName;

@@ -64,8 +64,9 @@ TODO:
 +4. Skopiuj skrypt do utworzenia bazy
 +5. Utwórz klasy repozytorium do wykonywania operacji CRUDowych na obiektach
 6. Napisz repozytoria i je przetestuj.
+7. DODAJ STATUS DO ORDERU...
 
 
 zahaszowne hasła do testów: 
-	'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
-	'kowalsky123': $2y$10$yIKWz6i/AtaRNewXJiheZ.UEGAIDiOnahYWqMfhnLXatPxS7QuDh6
+	admin - 'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
+	j.kowalsky - 'kowalsky123': $2y$10$yIKWz6i/AtaRNewXJiheZ.UEGAIDiOnahYWqMfhnLXatPxS7QuDh6
