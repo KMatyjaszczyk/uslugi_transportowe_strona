@@ -54,7 +54,7 @@ class UserRepository {
         }
     }
 
-    public function create(User $user): void {
+    public function create(User $user): bool {
         $preparedLogin = $user->getLogin();
         $preparedPassword = $user->getPassword();
         $preparedEmail = $user->getEmail();
@@ -71,7 +71,9 @@ class UserRepository {
         
         if (!$statement->execute()) {
             echo "Failure on saving user to database<br>";
+            return false;
         } else {
+            return true;
             echo "User created successfully!<br>"; // For test purposes
         }
     }

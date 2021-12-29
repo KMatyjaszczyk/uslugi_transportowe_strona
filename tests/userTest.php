@@ -18,4 +18,5 @@ echo "<br><br>";
 
 echo "TEST USER REPOSITORY - CREATE<br>";
 $userToBeCreated = new User(null, 'j.kowalskyy', 'kowalsky123', 'kowalsky@onet.pl', false, new DateTime('2021/12/29 00:00:00'));
-$testUserRepository->create($userToBeCreated);
+$createResult = $testUserRepository->create($userToBeCreated);
+var_dump($createResult);
