@@ -29,4 +29,31 @@ class UserRepository {
     public function __destruct() {
         $this->connection->close();
     }
+
+    public function getById(int $id): ?User {
+        $statement = $this->connection->prepare(
+            "SELECT `id`, `login`, `password`, `email`, `isAdmin`, `creationDate` 
+            FROM `users` 
+            WHERE `id` = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $result = $statement->get_result();
+        $userFromResult = $result->fetch_object();
+        var_dump($userFromResult);
+        if ($userFromResult === null) {
+            return null;
+        } else {
+            return new User(
+                $userFromResult->id,
+                $userFromResult->login,
+                $userFromResult->password,
+                $userFromResult->email,
+                $userFromResult->isAdmin,
+                new DateTime($userFromResult->creationDate)
+            );
+        }
+    }
+
+    
+
 }

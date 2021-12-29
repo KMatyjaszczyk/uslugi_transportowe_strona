@@ -6,7 +6,7 @@ include_once './classes/repository/DbConfiguration.php';
 include_once './classes/repository/UserRepository.php';
 
 echo "TEST USER<br>";
-$testUser = new User(1, 'admin', 'admin', 'admin@admin.pl', true);
+$testUser = new User(1, 'admin', 'admin', 'admin@admin.pl', true, new DateTime());
 var_dump($testUser);
 echo "<br><br>";
 
@@ -25,3 +25,7 @@ echo "<br><br>";
 echo "TEST OPEN USER REPOSITORY<br>";
 $testUserRepository = new UserRepository();
 var_dump($testUserRepository);
+echo "<br><br>";
+
+echo "TEST USER REPOSITORY - GET BY ID<br>";
+$testUser = $testUserRepository->getById(1);
