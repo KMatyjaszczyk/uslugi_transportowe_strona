@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . './DbConfiguration.php';
-include_once 'classes/model/User.php';
-// TODO write class
+include_once '../classes/model/User.php';
+
 class UserRepository {
     protected mysqli $connection;
 
