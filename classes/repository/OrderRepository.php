@@ -38,9 +38,10 @@ class OrderRepository {
             FROM `orders`");
         $statement->execute();
         $result = $statement->get_result();
-        var_dump($result); // For test purposes
+        // var_dump($result); // For test purposes
+
         if ($result->num_rows == 0) {
-            echo "There is no orders...<br>";
+            //echo "There is no orders...<br>"; // For test purposes
             return null;
         } else {
             $orders = [];
@@ -80,7 +81,7 @@ class OrderRepository {
         $statement->execute();
         $result = $statement->get_result();
         $orderFromResult = $result->fetch_object();
-        var_dump($orderFromResult); // For test purposes
+        // var_dump($orderFromResult); // For test purposes
 
         if ($orderFromResult === null) {
             return null;
@@ -103,6 +104,48 @@ class OrderRepository {
                 new DateTime($orderFromResult->creationDate),
                 new DateTime($orderFromResult->lastUpdateDate),
             );
+        }
+    }
+
+    public function getByClientNameOrDestination(string $clientNameOrDestination): ?array {
+        $statement = $this->connection->prepare(
+            "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, `destination`,
+                `journeyForm`, `vehicle`, `additionalServices`, `status`, `creationDate`,
+                `lastUpdateDate`
+            FROM `orders`
+            WHERE `clientName` LIKE ? OR `destination` LIKE ?");
+        $statement->bind_param("ss", $clientNameOrDestination, $clientNameOrDestination);
+        $statement->execute();
+        $result = $statement->get_result();
+        // var_dump($result); // For test purposes
+
+        if ($result->num_rows == 0) {
+            // echo "There is no orders with specified client name or destination...<br>"; // For test purposes
+            return null;
+        } else {
+            $orders = [];
+            while ($orderRecord = $result->fetch_object()) {
+                $additionalServicesArray = [];
+                if ($orderRecord->additionalServices !== null) {
+                    $additionalServicesArray = explode(";", $orderRecord->additionalServices);
+                }
+
+                $order = new Order(
+                    $orderRecord->id,
+                    $orderRecord->clientName,
+                    $orderRecord->clientEmail,
+                    new DateTime($orderRecord->departureDate),
+                    $orderRecord->destination,
+                    $orderRecord->journeyForm,
+                    $orderRecord->vehicle,
+                    $additionalServicesArray,
+                    $orderRecord->status,
+                    new DateTime($orderRecord->creationDate),
+                    new DateTime($orderRecord->lastUpdateDate),
+                );
+                array_push($orders, $order);
+            }
+            return $orders;
         }
     }
 
@@ -180,10 +223,23 @@ class OrderRepository {
             echo "Failure on updating order on database... <br>";
             return false;
         } else {
-            echo "Order updated successfully!<br>"; // For test purposes
+            // echo "Order updated successfully!<br>"; // For test purposes
             return true;
         }
     }
 
-    //TODO - add status to Order, add getByClientNameOrDestination
+    public function deleteById(int $orderId): bool {
+        $statement = $this->connection->prepare(
+            "DELETE FROM `orders` WHERE id = ?"
+        );
+        $statement->bind_param("i", $orderId);
+        
+        if (!$statement->execute()) {
+            echo "Failure on deleting order from database with ID: $orderId... <br>";
+            return false;
+        } else {
+            // echo "Order with ID: $orderId deleted successfully!<br>"; // For test purposes
+            return true;
+        }
+    }
 }

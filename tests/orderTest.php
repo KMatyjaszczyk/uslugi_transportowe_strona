@@ -26,6 +26,12 @@ echo "<br>=======<br>";
 var_dump($getByIdResult);
 echo "<br><br>";
 
+echo "TEST ORDER REPOSITORY - GET BY CLIENT NAME OR DESTINATION<br>";
+$getByClientNameOrDestinationResult = $testOrderRepository->getByClientNameOrDestination("Częstochowa");
+echo "<br>=======<br>";
+var_dump($getByClientNameOrDestinationResult);
+echo "<br><br>";
+
 echo "TEST ORDER REPOSITORY - CREATE<br>";
 $orderToBeCreated = new Order(null, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com',
     new DateTime('2022/01/12 17:05:00'), 'Częstochowa', 'pielgrzymka',
@@ -40,4 +46,9 @@ $orderToBeUpdated = new Order(null, 'JANUSZEX', 'jan.kowalski@gmail.com',
     'Mercedes', [], 1, null, null);
 $updateResult = $testOrderRepository->update(5, $orderToBeUpdated);
 var_dump($updateResult);
+echo "<br><br>";
+
+echo "TEST ORDER REPOSITORY - DELETE<br>";
+$orderDeleteByIdResult = $testOrderRepository->deleteById(35);
+var_dump($orderDeleteByIdResult);
 echo "<br><br>";
