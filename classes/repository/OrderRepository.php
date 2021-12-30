@@ -34,7 +34,7 @@ class OrderRepository {
         $statement = $this->connection->prepare(
             "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, 
                 `destination`, `journeyForm`, `vehicle`, `additionalServices`, 
-                `creationDate`, `lastUpdateDate` 
+                `status`, `creationDate`, `lastUpdateDate` 
             FROM `orders`");
         $statement->execute();
         $result = $statement->get_result();
@@ -54,6 +54,7 @@ class OrderRepository {
                     $orderRecord->journeyForm,
                     $orderRecord->vehicle,
                     explode(";", $orderRecord->additionalServices),
+                    $orderRecord->status,
                     new DateTime($orderRecord->creationDate),
                     new DateTime($orderRecord->lastUpdateDate),
                 );
@@ -67,7 +68,7 @@ class OrderRepository {
         $statement = $this->connection->prepare(
             "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, 
                 `destination`, `journeyForm`, `vehicle`, `additionalServices`, 
-                `creationDate`, `lastUpdateDate` 
+                `status`, `creationDate`, `lastUpdateDate` 
             FROM `orders` 
             WHERE `id` = ?");
         $statement->bind_param("i", $orderId);
@@ -87,6 +88,7 @@ class OrderRepository {
                 $orderFromResult->journeyForm,
                 $orderFromResult->vehicle,
                 explode(";", $orderFromResult->additionalServices),
+                $orderFromResult->status,
                 new DateTime($orderFromResult->creationDate),
                 new DateTime($orderFromResult->lastUpdateDate),
             );
@@ -101,21 +103,26 @@ class OrderRepository {
         $preparedDestination = $order->getDestination();
         $preparedJourneyForm = $order->getJourneyForm();
         $preparedVehicle = $order->getVehicle();
-        $preparedAddidionalServices = implode(";", $order->getAdditionalServices());
+        $preparedAdditionalServices = "";
+        $preparedStatus = $order->getStatus();
         $preparedCreationDate = $currentDate->format('Y-m-d H:i:s');
         $preparedLastUpdatedDate = $currentDate->format('Y-m-d H:i:s');
+
+        if (!empty($order->getAdditionalServices())) {
+            $preparedAdditionalServices = implode(";", $order->getAdditionalServices());
+        }
 
         $statement = $this->connection->prepare(
             "INSERT INTO `orders`
             (`clientName`, `clientEmail`, `departureDate`, `destination`, `journeyForm`, 
-                `vehicle`, `additionalServices`, `creationDate`, `lastUpdateDate`)
+                `vehicle`, `additionalServices`, `status`, `creationDate`, `lastUpdateDate`)
             VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            (?, ?, ?, ?, ?, ?, NULLIF(?, ''), ?, ?, ?)"
         );
-        $statement->bind_param("sssssssss",
-            $preparedClientName, $preparedClientEmail, $preparedDepartureDate,
-            $preparedDestination, $preparedJourneyForm, $preparedVehicle,
-            $preparedAddidionalServices, $preparedCreationDate, $preparedLastUpdatedDate);
+        $statement->bind_param("sssssssiss",
+            $preparedClientName, $preparedClientEmail, $preparedDepartureDate, $preparedDestination, 
+            $preparedJourneyForm, $preparedVehicle, $preparedAdditionalServices, $preparedStatus, 
+            $preparedCreationDate, $preparedLastUpdatedDate);
 
         if (!$statement->execute()) {
             echo "Failure on saving created order to database... <br>";
@@ -134,8 +141,12 @@ class OrderRepository {
         $preparedDestination = $orderToBeUpdated->getDestination();
         $preparedJourneyForm = $orderToBeUpdated->getJourneyForm();
         $preparedVehicle = $orderToBeUpdated->getVehicle();
-        $preparedAddidionalServices = implode(";", $orderToBeUpdated->getAdditionalServices());
+        $preparedAdditionalServices = "";
         $preparedLastUpdatedDate = $currentDate->format('Y-m-d H:i:s');
+
+        if (!empty($orderToBeUpdated->getAdditionalServices())) {
+            $preparedAdditionalServices = implode(";", $orderToBeUpdated->getAdditionalServices());
+        }
 
         $statement = $this->connection->prepare(
             "UPDATE `orders` SET
@@ -145,14 +156,14 @@ class OrderRepository {
                 `destination` = ?, 
                 `journeyForm` = ?, 
                 `vehicle` = ?, 
-                `additionalServices` = ?, 
+                `additionalServices` = NULLIF(?, ''), 
                 `lastUpdateDate` = ?
             WHERE `id` = ?"
         );
         $statement->bind_param("ssssssssi",
             $preparedClientName, $preparedClientEmail, $preparedDepartureDate,
             $preparedDestination, $preparedJourneyForm, $preparedVehicle,
-            $preparedAddidionalServices, $preparedLastUpdatedDate, $orderId);
+            $preparedAdditionalServices, $preparedLastUpdatedDate, $orderId);
 
         if (!$statement->execute()) {
             echo "Failure on updating order on database... <br>";

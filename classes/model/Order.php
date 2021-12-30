@@ -1,5 +1,10 @@
 <?php
 class Order {
+    public static int $STATUS_CREATED = 1;
+    public static int $STATUS_CANCELLED = 2;
+    public static int $STATUS_ACCEPTED = 3;
+    public static int $STATUS_REALISED = 4;
+
     protected ?int $id;
     protected string $clientName;
     protected string $clientEmail;
@@ -7,13 +12,14 @@ class Order {
     protected string $destination;
     protected string $journeyForm;
     protected string $vehicle;
-    protected ?array $additionalServices;
+    protected array $additionalServices;
+    protected int $status;
     protected ?DateTime $creationDate;
     protected ?DateTime $lastUpdatedDate;
 
     public function __construct(?int $id, string $clientName, string $clientEmail,
             DateTime $departureDate, string $destination, string $journeyForm,
-            string $vehicle, ?array $additionalServices, 
+            string $vehicle, array $additionalServices, int $status,
             ?DateTime $creationDate, ?DateTime $lastUpdatedDate
             ) {
         $this->id = $id;
@@ -24,6 +30,7 @@ class Order {
         $this->journeyForm = $journeyForm;
         $this->vehicle = $vehicle;
         $this->additionalServices = $additionalServices;
+        $this->status = $status;
         $this->creationDate = $creationDate;
         $this->lastUpdatedDate = $lastUpdatedDate;
     }
@@ -56,8 +63,12 @@ class Order {
         return $this->vehicle;
     }
 
-    public function getAdditionalServices(): ?array {
+    public function getAdditionalServices(): array {
         return $this->additionalServices;
+    }
+
+    public function getStatus(): int {
+        return $this->status;
     }
 
     public function getCreationDate(): ?DateTime {
