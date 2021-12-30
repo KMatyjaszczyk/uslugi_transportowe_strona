@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . './DbConfiguration.php';
 include_once '../classes/model/Order.php';
-// TODO write class
+
 class OrderRepository {
     protected mysqli $connection;
 
@@ -45,6 +45,11 @@ class OrderRepository {
         } else {
             $orders = [];
             while ($orderRecord = $result->fetch_object()) {
+                $additionalServicesArray = [];
+                if ($orderRecord->additionalServices !== null) {
+                    $additionalServicesArray = explode(";", $orderRecord->additionalServices);
+                }
+
                 $order = new Order(
                     $orderRecord->id,
                     $orderRecord->clientName,
@@ -53,7 +58,7 @@ class OrderRepository {
                     $orderRecord->destination,
                     $orderRecord->journeyForm,
                     $orderRecord->vehicle,
-                    explode(";", $orderRecord->additionalServices),
+                    $additionalServicesArray,
                     $orderRecord->status,
                     new DateTime($orderRecord->creationDate),
                     new DateTime($orderRecord->lastUpdateDate),
@@ -76,9 +81,15 @@ class OrderRepository {
         $result = $statement->get_result();
         $orderFromResult = $result->fetch_object();
         var_dump($orderFromResult); // For test purposes
+
         if ($orderFromResult === null) {
             return null;
         } else {
+            $additionalServicesArray = [];
+            if ($orderFromResult->additionalServices !== null) {
+                $additionalServicesArray = explode(";", $orderFromResult->additionalServices);
+            }
+
             return new Order(
                 $orderFromResult->id,
                 $orderFromResult->clientName,
@@ -87,7 +98,7 @@ class OrderRepository {
                 $orderFromResult->destination,
                 $orderFromResult->journeyForm,
                 $orderFromResult->vehicle,
-                explode(";", $orderFromResult->additionalServices),
+                $additionalServicesArray,
                 $orderFromResult->status,
                 new DateTime($orderFromResult->creationDate),
                 new DateTime($orderFromResult->lastUpdateDate),

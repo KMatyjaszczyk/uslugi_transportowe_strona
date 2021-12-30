@@ -21,7 +21,8 @@ var_dump($getAllResult);
 echo "<br><br>";
 
 echo "TEST ORDER REPOSITORY - GET BY ID<br>";
-$getByIdResult = $testOrderRepository->getById(2);
+$getByIdResult = $testOrderRepository->getById(5);
+echo "<br>=======<br>";
 var_dump($getByIdResult);
 echo "<br><br>";
 
