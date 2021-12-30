@@ -65,6 +65,7 @@ TODO:
 +5. Utwórz klasy repozytorium do wykonywania operacji CRUDowych na obiektach
 6. Napisz repozytoria i je przetestuj.
 7. DODAJ STATUS DO ORDERU...
+8. Dodaj usuwanie orderu po Id i zmianę statusu po Id
 
 
 zahaszowne hasła do testów: 

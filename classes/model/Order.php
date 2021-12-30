@@ -7,13 +7,13 @@ class Order {
     protected string $destination;
     protected string $journeyForm;
     protected string $vehicle;
-    protected array $additionalServices;
+    protected ?array $additionalServices;
     protected ?DateTime $creationDate;
     protected ?DateTime $lastUpdatedDate;
 
     public function __construct(?int $id, string $clientName, string $clientEmail,
             DateTime $departureDate, string $destination, string $journeyForm,
-            string $vehicle, array $additionalServices, 
+            string $vehicle, ?array $additionalServices, 
             ?DateTime $creationDate, ?DateTime $lastUpdatedDate
             ) {
         $this->id = $id;
@@ -28,7 +28,7 @@ class Order {
         $this->lastUpdatedDate = $lastUpdatedDate;
     }
 
-    public function getId(): int {
+    public function getId(): ?int {
         return $this->id;
     }
 
@@ -56,15 +56,15 @@ class Order {
         return $this->vehicle;
     }
 
-    public function getAdditionalServices(): array {
+    public function getAdditionalServices(): ?array {
         return $this->additionalServices;
     }
 
-    public function getCreationDate(): DateTime {
+    public function getCreationDate(): ?DateTime {
         return $this->creationDate;
     }
 
-    public function getLastUpdatedDate(): DateTime {
+    public function getLastUpdatedDate(): ?DateTime {
         return $this->lastUpdatedDate;
     }
 }
