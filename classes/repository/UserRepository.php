@@ -20,10 +20,10 @@ class UserRepository {
         }
 
         // For test purposes
-        echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
-            . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
-            . ', ' . DbConfiguration::$DB_PORT . '<br>';
-        echo 'Connection to database succeeded<br>';
+        // echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
+        //     . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
+        //     . ', ' . DbConfiguration::$DB_PORT . '<br>';
+        // echo 'Connection to database succeeded<br>';
     }
 
     public function __destruct() {

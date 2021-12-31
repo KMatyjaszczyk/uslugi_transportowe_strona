@@ -20,10 +20,10 @@ class OrderRepository {
         }
 
         // For test purposes
-        echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
-            . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
-            . ', ' . DbConfiguration::$DB_PORT . '<br>';
-        echo 'Connection to database succeeded<br>';
+        // echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
+        //     . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
+        //     . ', ' . DbConfiguration::$DB_PORT . '<br>';
+        // echo 'Connection to database succeeded<br>';
     }
 
     public function __destruct() {
@@ -279,9 +279,22 @@ class OrderRepository {
         $currentDate = new DateTime();
         $preparedStatus = $statusToBeUpdated;
         $preparedLastUpdatedDate = $currentDate->format('Y-m-d H:i:s');
+        
+        $statement = $this->connection->prepare(
+            "UPDATE `orders` SET 
+                `status` = ?, 
+                `lastUpdateDate` = ? 
+            WHERE `id` = ?"
+        );
+        $statement->bind_param("isi", $preparedStatus, $preparedLastUpdatedDate, $orderId);
 
-
-        return false;
+        if (!$statement->execute()) {
+            echo "Failure on updating order on database... <br>";
+            return false;
+        } else {
+            // echo "Order updated successfully!<br>"; // For test purposes
+            return true;
+        }
     }
 
     public function deleteById(int $orderId): bool {

@@ -54,6 +54,11 @@ $updateResult = $testOrderRepository->update(5, $orderToBeUpdated);
 var_dump($updateResult);
 echo "<br><br>";
 
+echo "TEST ORDER REPOSITORY - UPDATE STATUS<br>";
+$updateStatusResult = $testOrderRepository->updateStatus(6, 3);
+var_dump($updateStatusResult);
+echo "<br><br>";
+
 echo "TEST ORDER REPOSITORY - DELETE<br>";
 $orderDeleteByIdResult = $testOrderRepository->deleteById(35);
 var_dump($orderDeleteByIdResult);
