@@ -39,7 +39,33 @@ class UserRepository {
         $statement->execute();
         $result = $statement->get_result();
         $userFromResult = $result->fetch_object();
-        var_dump($userFromResult); // For test purposes
+        // var_dump($userFromResult); // For test purposes
+
+        if ($userFromResult === null) {
+            return null;
+        } else {
+            return new User(
+                $userFromResult->id,
+                $userFromResult->login,
+                $userFromResult->password,
+                $userFromResult->email,
+                $userFromResult->isAdmin,
+                new DateTime($userFromResult->creationDate)
+            );
+        }
+    }
+
+    public function getByLogin(string $login): ?User {
+        $statement = $this->connection->prepare(
+            "SELECT `id`, `login`, `password`, `email`, `isAdmin`, `creationDate` 
+            FROM `users` 
+            WHERE `login` = ?");
+        $statement->bind_param("s", $login);
+        $statement->execute();
+        $result = $statement->get_result();
+        $userFromResult = $result->fetch_object();
+        // var_dump($userFromResult); // For test purposes
+
         if ($userFromResult === null) {
             return null;
         } else {

@@ -13,11 +13,17 @@ var_dump($testUserRepository);
 echo "<br><br>";
 
 echo "TEST USER REPOSITORY - GET BY ID<br>";
-$testUser = $testUserRepository->getById(1);
+$testUserById = $testUserRepository->getById(1);
+var_dump($testUserById);
 echo "<br><br>";
 
-echo "TEST USER REPOSITORY - CREATE<br>";
-$userToBeCreated = new User(null, 'j.kowalskyy', 'kowalsky123', 'kowalsky@onet.pl', false, new DateTime('2021/12/29 00:00:00'));
-$createResult = $testUserRepository->create($userToBeCreated);
-var_dump($createResult);
+echo "TEST USER REPOSITORY - GET BY LOGIN<br>";
+$testUserByLogin = $testUserRepository->getByLogin("admin");
+var_dump($testUserByLogin);
 echo "<br><br>";
+
+// echo "TEST USER REPOSITORY - CREATE<br>";
+// $userToBeCreated = new User(null, 'j.kowalskyy', 'kowalsky123', 'kowalsky@onet.pl', false, new DateTime('2021/12/29 00:00:00'));
+// $createResult = $testUserRepository->create($userToBeCreated);
+// var_dump($createResult);
+// echo "<br><br>";
