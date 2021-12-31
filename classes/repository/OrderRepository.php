@@ -32,7 +32,7 @@ class OrderRepository {
 
     public function getAll(): ?array {
         $statement = $this->connection->prepare(
-            "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, 
+            "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, 
                 `destination`, `journeyForm`, `vehicle`, `additionalServices`, 
                 `status`, `creationDate`, `lastUpdateDate` 
             FROM `orders`");
@@ -53,6 +53,7 @@ class OrderRepository {
 
                 $order = new Order(
                     $orderRecord->id,
+                    $orderRecord->userId,
                     $orderRecord->clientName,
                     $orderRecord->clientEmail,
                     new DateTime($orderRecord->departureDate),
@@ -72,7 +73,7 @@ class OrderRepository {
 
     public function getById(int $orderId): ?Order {
         $statement = $this->connection->prepare(
-            "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, 
+            "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, 
                 `destination`, `journeyForm`, `vehicle`, `additionalServices`, 
                 `status`, `creationDate`, `lastUpdateDate` 
             FROM `orders` 
@@ -93,6 +94,7 @@ class OrderRepository {
 
             return new Order(
                 $orderFromResult->id,
+                $orderFromResult->userId,
                 $orderFromResult->clientName,
                 $orderFromResult->clientEmail,
                 new DateTime($orderFromResult->departureDate),
@@ -109,7 +111,7 @@ class OrderRepository {
 
     public function getByClientNameOrDestination(string $clientNameOrDestination): ?array {
         $statement = $this->connection->prepare(
-            "SELECT `id`, `clientName`, `clientEmail`, `departureDate`, `destination`,
+            "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, `destination`,
                 `journeyForm`, `vehicle`, `additionalServices`, `status`, `creationDate`,
                 `lastUpdateDate`
             FROM `orders`
@@ -132,6 +134,7 @@ class OrderRepository {
 
                 $order = new Order(
                     $orderRecord->id,
+                    $orderRecord->userId,
                     $orderRecord->clientName,
                     $orderRecord->clientEmail,
                     new DateTime($orderRecord->departureDate),
@@ -151,6 +154,7 @@ class OrderRepository {
 
     public function create(Order $order): bool {
         $currentDate = new DateTime();
+        $preparedUserId = $order->getUserId();
         $preparedClientName = $order->getClientName();
         $preparedClientEmail = $order->getClientEmail();
         $preparedDepartureDate = $order->getDepartureDate()->format('Y-m-d H:i:s');
@@ -168,15 +172,15 @@ class OrderRepository {
 
         $statement = $this->connection->prepare(
             "INSERT INTO `orders`
-            (`clientName`, `clientEmail`, `departureDate`, `destination`, `journeyForm`, 
+            (`userId`, `clientName`, `clientEmail`, `departureDate`, `destination`, `journeyForm`, 
                 `vehicle`, `additionalServices`, `status`, `creationDate`, `lastUpdateDate`)
             VALUES
-            (?, ?, ?, ?, ?, ?, NULLIF(?, ''), ?, ?, ?)"
+            (?, ?, ?, ?, ?, ?, ?, NULLIF(?, ''), ?, ?, ?)"
         );
-        $statement->bind_param("sssssssiss",
-            $preparedClientName, $preparedClientEmail, $preparedDepartureDate, $preparedDestination, 
-            $preparedJourneyForm, $preparedVehicle, $preparedAdditionalServices, $preparedStatus, 
-            $preparedCreationDate, $preparedLastUpdatedDate);
+        $statement->bind_param("isssssssiss",
+            $preparedUserId, $preparedClientName, $preparedClientEmail, $preparedDepartureDate, 
+            $preparedDestination, $preparedJourneyForm, $preparedVehicle, $preparedAdditionalServices, 
+            $preparedStatus, $preparedCreationDate, $preparedLastUpdatedDate);
 
         if (!$statement->execute()) {
             echo "Failure on saving created order to database... <br>";

@@ -6,6 +6,7 @@ class Order {
     public static int $STATUS_REALISED = 4;
 
     protected ?int $id;
+    protected ?int $userId;
     protected string $clientName;
     protected string $clientEmail;
     protected DateTime $departureDate;
@@ -17,12 +18,13 @@ class Order {
     protected ?DateTime $creationDate;
     protected ?DateTime $lastUpdatedDate;
 
-    public function __construct(?int $id, string $clientName, string $clientEmail,
+    public function __construct(?int $id, ?int $userId, string $clientName, string $clientEmail,
             DateTime $departureDate, string $destination, string $journeyForm,
             string $vehicle, array $additionalServices, int $status,
             ?DateTime $creationDate, ?DateTime $lastUpdatedDate
             ) {
         $this->id = $id;
+        $this->userId = $userId;
         $this->clientName = $clientName;
         $this->clientEmail = $clientEmail;
         $this->departureDate = $departureDate;
@@ -37,6 +39,10 @@ class Order {
 
     public function getId(): ?int {
         return $this->id;
+    }
+
+    public function getUserId(): ?int {
+        return $this->userId;
     }
 
     public function getClientName(): string {
