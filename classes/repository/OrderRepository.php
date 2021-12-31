@@ -109,6 +109,49 @@ class OrderRepository {
         }
     }
 
+    public function getByUserId(int $userId): ?array {
+        $statement = $this->connection->prepare(
+            "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, 
+                `destination`, `journeyForm`, `vehicle`, `additionalServices`, 
+                `status`, `creationDate`, `lastUpdateDate` 
+            FROM `orders` 
+            WHERE `userId` = ?");
+        $statement->bind_param("i", $userId);
+        $statement->execute();
+        $result = $statement->get_result();
+        // var_dump($result); // For test purposes
+
+        if ($result->num_rows == 0) {
+            // echo "There is no orders with user ID = $userId...<br>"; // For test purposes
+            return null;
+        } else {
+            $orders = [];
+            while ($orderRecord = $result->fetch_object()) {
+                $additionalServicesArray = [];
+                if ($orderRecord->additionalServices !== null) {
+                    $additionalServicesArray = explode(";", $orderRecord->additionalServices);
+                }
+
+                $order = new Order(
+                    $orderRecord->id,
+                    $orderRecord->userId,
+                    $orderRecord->clientName,
+                    $orderRecord->clientEmail,
+                    new DateTime($orderRecord->departureDate),
+                    $orderRecord->destination,
+                    $orderRecord->journeyForm,
+                    $orderRecord->vehicle,
+                    $additionalServicesArray,
+                    $orderRecord->status,
+                    new DateTime($orderRecord->creationDate),
+                    new DateTime($orderRecord->lastUpdateDate),
+                );
+                array_push($orders, $order);
+            }
+            return $orders;
+        }
+    }
+
     public function getByClientNameOrDestination(string $clientNameOrDestination): ?array {
         $statement = $this->connection->prepare(
             "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, `destination`,
@@ -230,6 +273,15 @@ class OrderRepository {
             // echo "Order updated successfully!<br>"; // For test purposes
             return true;
         }
+    }
+
+    public function updateStatus(int $orderId, int $statusToBeUpdated): bool {
+        $currentDate = new DateTime();
+        $preparedStatus = $statusToBeUpdated;
+        $preparedLastUpdatedDate = $currentDate->format('Y-m-d H:i:s');
+
+
+        return false;
     }
 
     public function deleteById(int $orderId): bool {

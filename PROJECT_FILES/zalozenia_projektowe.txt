@@ -66,10 +66,11 @@ TODO:
 +6. Napisz repozytoria i je przetestuj.
 +7. DODAJ STATUS DO ORDERU...
 +8. Dodaj usuwanie orderu po Id, wybieranie orderu po nazwie klienta lub destination
-9. Dodaj do bazy (i metod) w tabeli order userId.
-10. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
++9. Dodaj do bazy (i metod) w tabeli order userId.
++10. Dodaj do repozytorium orderu metodę biorącą wszystkie ordery po zadanym id usera
 11. Dodaj do repozytorium usera metodę sprawdzającą, czy użytkownik o podanym loginie i haśle istnieje
-12. Dodaj metodę sprawdzającą...
+12. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
+13. Dodaj metodę sprawdzającą...
 
 
 zahaszowne hasła do testów: 

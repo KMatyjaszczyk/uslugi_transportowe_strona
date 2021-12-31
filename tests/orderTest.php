@@ -26,19 +26,25 @@ echo "<br>=======<br>";
 var_dump($getByIdResult);
 echo "<br><br>";
 
+echo "TEST ORDER REPOSITORY - GET BY USER ID<br>";
+$getByUserIdResult = $testOrderRepository->getByUserId(1);
+echo "<br>=======<br>";
+var_dump($getByUserIdResult);
+echo "<br><br>";
+
 echo "TEST ORDER REPOSITORY - GET BY CLIENT NAME OR DESTINATION<br>";
 $getByClientNameOrDestinationResult = $testOrderRepository->getByClientNameOrDestination("Częstochowa");
 echo "<br>=======<br>";
 var_dump($getByClientNameOrDestinationResult);
 echo "<br><br>";
 
-echo "TEST ORDER REPOSITORY - CREATE<br>";
-$orderToBeCreated = new Order(null, 2, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com',
-    new DateTime('2022/01/12 17:05:00'), 'Częstochowa', 'pielgrzymka',
-    'Mercedes', ['naglosnienie'], 1, null, null);
-$createResult = $testOrderRepository->create($orderToBeCreated);
-var_dump($createResult);
-echo "<br><br>";
+// echo "TEST ORDER REPOSITORY - CREATE<br>";
+// $orderToBeCreated = new Order(null, 2, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com',
+//     new DateTime('2022/01/12 17:05:00'), 'Częstochowa', 'pielgrzymka',
+//     'Mercedes', ['naglosnienie'], 1, null, null);
+// $createResult = $testOrderRepository->create($orderToBeCreated);
+// var_dump($createResult);
+// echo "<br><br>";
 
 echo "TEST ORDER REPOSITORY - UPDATE<br>";
 $orderToBeUpdated = new Order(null, null, 'JANUSZEX', 'jan.kowalski@gmail.com', 
