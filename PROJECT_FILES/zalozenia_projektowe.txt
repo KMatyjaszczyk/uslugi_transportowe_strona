@@ -56,7 +56,11 @@ Tabele pomocnicze (na bazie):
 	userId: int
 	sessionId: int
 	lastUpdateDate: datetime
-	
+
+zahaszowne hasła do testów: 
+	admin - 'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
+	j.kowalsky - 'kowalsky123': $2y$10$yIKWz6i/AtaRNewXJiheZ.UEGAIDiOnahYWqMfhnLXatPxS7QuDh6
+
 TODO:
 +1. Zrób stronę z formularzem logowania
 +2. Utwórz klasy domenowe w PHP
@@ -68,11 +72,5 @@ TODO:
 +8. Dodaj usuwanie orderu po Id, wybieranie orderu po nazwie klienta lub destination
 +9. Dodaj do bazy (i metod) w tabeli order userId.
 +10. Dodaj do repozytorium orderu metodę biorącą wszystkie ordery po zadanym id usera
-11. Dodaj do repozytorium usera metodę sprawdzającą, czy użytkownik o podanym loginie i haśle istnieje
-12. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
-13. Dodaj metodę sprawdzającą...
-
-
-zahaszowne hasła do testów: 
-	admin - 'admin': $2y$10$DILK/Xv1qK0LF//Nmio/PeolCz2HhtDDabrHNh8bWmQ.Z7DmtSenW
-	j.kowalsky - 'kowalsky123': $2y$10$yIKWz6i/AtaRNewXJiheZ.UEGAIDiOnahYWqMfhnLXatPxS7QuDh6
+11. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
+	11.1. Stwórz metodę sprawdzającą, czy użytkownik o podanym loginie istnieje.

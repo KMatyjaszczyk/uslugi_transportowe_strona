@@ -1,11 +1,14 @@
 <?php
 include_once '../classes/model/User.php';
 include_once '../classes/repository/UserRepository.php';
+include_once '../classes/service/UserService.php';
 
 echo "TEST USER<br>";
 $testUser = new User(1, 'admin', 'admin', 'admin@admin.pl', true, new DateTime());
 var_dump($testUser);
 echo "<br><br>";
+
+echo "<hr><br><br>";
 
 echo "TEST OPEN USER REPOSITORY<br>";
 $testUserRepository = new UserRepository();
@@ -27,3 +30,10 @@ echo "<br><br>";
 // $createResult = $testUserRepository->create($userToBeCreated);
 // var_dump($createResult);
 // echo "<br><br>";
+
+echo "<hr><br><br>";
+
+echo "TEST CREATE USER SERVICE<br>";
+$testUserService = new UserService;
+var_dump($testUserService);
+echo "<br><br>";

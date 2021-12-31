@@ -1,6 +1,7 @@
 <?php
 include_once '../classes/model/Order.php';
 include_once '../classes/repository/OrderRepository.php';
+include_once '../classes/service/OrderService.php';
 
 echo "TEST ORDER<br>";
 $testOrder = new Order(1, 2, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com',
@@ -9,6 +10,8 @@ $testOrder = new Order(1, 2, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com'
     new DateTime('2021/12/29 00:00:00'), new DateTime('2999/12/31 23:59:59'));
 var_dump($testOrder);
 echo "<br><br>";
+
+echo "<hr><br><br>";
 
 echo "TEST OPEN ORDER REPOSITORY<br>";
 $testOrderRepository = new OrderRepository();
@@ -62,4 +65,11 @@ echo "<br><br>";
 echo "TEST ORDER REPOSITORY - DELETE<br>";
 $orderDeleteByIdResult = $testOrderRepository->deleteById(35);
 var_dump($orderDeleteByIdResult);
+echo "<br><br>";
+
+echo "<hr><br><br>";
+
+echo "TEST CREATE ORDER SERVICE<br>";
+$testOrderService = new OrderService();
+var_dump($testOrderService);
 echo "<br><br>";

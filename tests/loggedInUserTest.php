@@ -1,11 +1,14 @@
 <?php
 include_once '../classes/model/LoggedInUser.php';
 include_once '../classes/repository/LoggedInUserRepository.php';
+include_once '../classes/service/LoggedInUserService.php';
 
 echo "TEST LOGGED IN USER<br>";
 $testLoggedInUser = new LoggedInUser('abc123', 1, new DateTime('2021/12/29 00:00:00'));
 var_dump($testLoggedInUser);
 echo "<br><br>";
+
+echo "<hr><br><br>";
 
 echo "TEST OPEN LOGGED IN USER REPOSITORY<br>";
 $testLoggedInUserRepository = new LoggedInUserRepository();
@@ -36,4 +39,11 @@ echo "<br><br>";
 echo "TEST LOGGED IN USER REPOSITORY - DELETE BY USER ID<br>";
 $deleteByUserIdResult = $testLoggedInUserRepository->deleteByUserId(1);
 var_dump($deleteByUserIdResult);
+echo "<br><br>";
+
+echo "<hr><br><br>";
+
+echo "TEST CREATE LOGGED IN USER SERVICE<br>";
+$testLoggedInUserService = new LoggedInUserService();
+var_dump($testLoggedInUserService);
 echo "<br><br>";
