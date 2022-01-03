@@ -10,7 +10,7 @@ class User {
     public function __construct(?int $id, string $login, string $password, string $email, bool $isAdmin = false, DateTime $creationDate) {
         $this->id = $id;
         $this->login = $login;
-        $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->password = $password;
         $this->email = $email;
         $this->isAdmin = $isAdmin;
         $this->creationDate = $creationDate;

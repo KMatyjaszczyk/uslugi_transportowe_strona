@@ -1,7 +1,7 @@
 <?php
 include_once '../classes/model/LoggedInUser.php';
 include_once '../classes/repository/LoggedInUserRepository.php';
-// TODO write class
+
 class LoggedInUserService {
     protected LoggedInUserRepository $loggedInUserRepository;
 
@@ -27,6 +27,6 @@ class LoggedInUserService {
     }
 
     public function deleteByUserId(int $userId): bool {
-        return $this->deleteByUserId($userId);
+        return $this->loggedInUserRepository->deleteByUserId($userId);
     }
 }

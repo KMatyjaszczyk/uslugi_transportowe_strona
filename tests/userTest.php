@@ -16,12 +16,12 @@ var_dump($testUserRepository);
 echo "<br><br>";
 
 echo "TEST USER REPOSITORY - GET BY ID<br>";
-$testUserById = $testUserRepository->getById(1);
+$testUserById = $testUserRepository->getById(29);
 var_dump($testUserById);
 echo "<br><br>";
 
 echo "TEST USER REPOSITORY - GET BY LOGIN<br>";
-$testUserByLogin = $testUserRepository->getByLogin("admin");
+$testUserByLogin = $testUserRepository->getByLogin("user");
 var_dump($testUserByLogin);
 echo "<br><br>";
 

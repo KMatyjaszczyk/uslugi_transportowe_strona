@@ -1,7 +1,7 @@
 <?php
 include_once '../classes/model/User.php';
 include_once '../classes/repository/UserRepository.php';
-// TODO write class
+
 class UserService {
     protected UserRepository $userRepository;
 

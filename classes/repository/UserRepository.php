@@ -82,7 +82,7 @@ class UserRepository {
 
     public function create(User $user): bool {
         $preparedLogin = $user->getLogin();
-        $preparedPassword = $user->getPassword();
+        $preparedPassword = password_hash($user->getPassword(), PASSWORD_BCRYPT);
         $preparedEmail = $user->getEmail();
         $preparedIsAdmin = $user->getIsAdmin();
         $preparedCreationDate = $user->getCreationDate()->format('Y-m-d H:i:s');

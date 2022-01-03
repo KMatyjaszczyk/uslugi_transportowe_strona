@@ -1,7 +1,7 @@
 <?php
 include_once '../classes/model/Order.php';
 include_once '../classes/repository/OrderRepository.php';
-// TODO write class
+
 class OrderService {
     protected OrderRepository $orderRepository;
     
