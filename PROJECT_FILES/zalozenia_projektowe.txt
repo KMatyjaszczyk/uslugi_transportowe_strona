@@ -72,5 +72,5 @@ TODO:
 +8. Dodaj usuwanie orderu po Id, wybieranie orderu po nazwie klienta lub destination
 +9. Dodaj do bazy (i metod) w tabeli order userId.
 +10. Dodaj do repozytorium orderu metodę biorącą wszystkie ordery po zadanym id usera
-11. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
-	11.1. Stwórz metodę sprawdzającą, czy użytkownik o podanym loginie istnieje.
++11. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
+12. Utwórz klasę UserLoginManager realizującą logowanie i wylogowywanie

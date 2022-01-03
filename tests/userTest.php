@@ -37,3 +37,19 @@ echo "TEST CREATE USER SERVICE<br>";
 $testUserService = new UserService;
 var_dump($testUserService);
 echo "<br><br>";
+
+echo "TEST USER SERVICE - GET BY ID<br>";
+$testUserById = $testUserService->getById(2);
+var_dump($testUserById);
+echo "<br><br>";
+
+echo "TEST USER SERVICE - GET BY LOGIN<br>";
+$testUserByLogin = $testUserService->getByLogin('admin');
+var_dump($testUserByLogin);
+echo "<br><br>";
+
+// echo "TEST USER SERVICE - CREATE<br>";
+// $userToBeCreated = new User(null, 'j.kowalskyy', 'kowalsky123', 'kowalsky@onet.pl', false, new DateTime('2021/12/29 00:00:00'));
+// $createResult = $testUserService->create($userToBeCreated);
+// var_dump($createResult);
+// echo "<br><br>";
