@@ -1,6 +1,6 @@
 <?php
-include_once '../classes/model/LoggedInUser.php';
-include_once '../classes/repository/LoggedInUserRepository.php';
+include_once 'LoggedInUser.php';
+include_once 'LoggedInUserRepository.php';
 
 class LoggedInUserService {
     protected LoggedInUserRepository $loggedInUserRepository;

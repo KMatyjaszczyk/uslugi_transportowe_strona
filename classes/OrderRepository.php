@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__ . './DbConfiguration.php';
-include_once '../classes/model/Order.php';
+include_once 'DbConfiguration.php';
+include_once 'Order.php';
 
 class OrderRepository {
     protected mysqli $connection;

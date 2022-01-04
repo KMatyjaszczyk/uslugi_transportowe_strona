@@ -1,7 +1,7 @@
 <?php
-include_once '../classes/model/Order.php';
-include_once '../classes/repository/OrderRepository.php';
-include_once '../classes/service/OrderService.php';
+include_once '../classes/Order.php';
+include_once '../classes/OrderRepository.php';
+include_once '../classes/OrderService.php';
 
 echo "TEST ORDER<br>";
 $testOrder = new Order(1, 2, 'Jan Kowalski Sp. z o.o.', 'jan.kowalski@gmail.com',

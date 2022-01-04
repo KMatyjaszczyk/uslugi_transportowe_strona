@@ -54,16 +54,26 @@
                     </section>
                     <!-- Form -->
                     <div class="mx-5 mb-5">
-                        <form action="/processLogin.php?process=login" method="post">
+                        <form action="processLogin.php?process=login" method="post">
                             <!-- Login -->
                             <label for="login" class="form-label mb-2">Login</label>
                             <input type="text" class="form-control mb-3" id="login" name="login" placeholder="Login">
                             <!-- password -->
                             <label for="password" class="form-label mb-2">Hasło</label>
                             <input type="text" class="form-control mb-3" id="password" name="password" placeholder="Hasło">
+                            <!-- Login failed communicate -->
+                            <?php
+                                if (isset($_GET['loginResult']) && $_GET['loginResult'] === 'fail') {
+                                    echo '
+                                        <div class="row">
+                                            <span class="text-danger">Niepoprawny login lub hasło</span>
+                                        </div>
+                                    ';
+                                } 
+                            ?>
                             <!-- submit -->
                             <div class="row"></div>
-                            <input type="submit" id="login" name="login" value="Zaloguj" class="btn btn-primary mt-3">
+                            <input type="submit" id="loginButton" name="loginButton" value="Zaloguj" class="btn btn-primary mt-3">
                         </form>
                     </div>
                 </div>

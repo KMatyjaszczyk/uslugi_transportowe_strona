@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__ . './DbConfiguration.php';
-include_once '../classes/model/User.php';
+include_once 'DbConfiguration.php';
+include_once 'User.php';
 
 class UserRepository {
     protected mysqli $connection;

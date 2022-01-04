@@ -1,7 +1,7 @@
 <?php
-include_once '../classes/model/User.php';
-include_once '../classes/repository/UserRepository.php';
-include_once '../classes/service/UserService.php';
+include_once '../classes/User.php';
+include_once '../classes/UserRepository.php';
+include_once '../classes/UserService.php';
 
 echo "TEST USER<br>";
 $testUser = new User(1, 'admin', 'admin', 'admin@admin.pl', true, new DateTime());

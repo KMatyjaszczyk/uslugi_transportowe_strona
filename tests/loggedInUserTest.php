@@ -1,7 +1,7 @@
 <?php
-include_once '../classes/model/LoggedInUser.php';
-include_once '../classes/repository/LoggedInUserRepository.php';
-include_once '../classes/service/LoggedInUserService.php';
+include_once '../classes/LoggedInUser.php';
+include_once '../classes/LoggedInUserRepository.php';
+include_once '../classes/LoggedInUserService.php';
 
 echo "TEST LOGGED IN USER<br>";
 $testLoggedInUser = new LoggedInUser('abc123', 1, new DateTime('2021/12/29 00:00:00'));

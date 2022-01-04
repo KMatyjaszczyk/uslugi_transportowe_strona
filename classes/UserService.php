@@ -1,6 +1,6 @@
 <?php
-include_once '../classes/model/User.php';
-include_once '../classes/repository/UserRepository.php';
+include_once 'User.php';
+include_once 'UserRepository.php';
 
 class UserService {
     protected UserRepository $userRepository;

@@ -1,8 +1,8 @@
 <?php
-include_once '../classes/model/User.php';
-include_once '../classes/model/LoggedInUser.php';
-include_once '../classes/service/UserService.php';
-include_once '../classes/service/LoggedInUserService.php';
+include_once 'User.php';
+include_once 'LoggedInUser.php';
+include_once 'UserService.php';
+include_once 'LoggedInUserService.php';
 
 class UserManager {
     protected UserService $userService;

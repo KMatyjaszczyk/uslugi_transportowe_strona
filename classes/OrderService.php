@@ -1,6 +1,6 @@
 <?php
-include_once '../classes/model/Order.php';
-include_once '../classes/repository/OrderRepository.php';
+include_once 'Order.php';
+include_once 'OrderRepository.php';
 
 class OrderService {
     protected OrderRepository $orderRepository;

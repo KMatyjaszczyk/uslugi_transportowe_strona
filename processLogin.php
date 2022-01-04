@@ -1,5 +1,5 @@
 <?php
-include_once 'classes/util/UserManager.php';
+include_once 'classes/UserManager.php';
 
 $userManager = new UserManager();
 
@@ -11,7 +11,7 @@ if (!isset($_GET['process'])) {
         if ($loginResult === null) {
             header('Location: login.php?loginResult=fail');
         } else {
-            header('Location: index.php');
+            header('Location: index.php?loginResult=success');
         }
     }
 }
