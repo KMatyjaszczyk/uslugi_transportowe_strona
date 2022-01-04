@@ -54,7 +54,7 @@
                     </section>
                     <!-- Form -->
                     <div class="mx-5 mb-5">
-                        <form action="processLogin.php" method="post">
+                        <form action="/processLogin.php?process=login" method="post">
                             <!-- Login -->
                             <label for="login" class="form-label mb-2">Login</label>
                             <input type="text" class="form-control mb-3" id="login" name="login" placeholder="Login">

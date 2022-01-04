@@ -73,4 +73,7 @@ TODO:
 +9. Dodaj do bazy (i metod) w tabeli order userId.
 +10. Dodaj do repozytorium orderu metodę biorącą wszystkie ordery po zadanym id usera
 +11. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
-12. Utwórz klasę UserLoginManager realizującą logowanie i wylogowywanie
++12. Utwórz klasę UserLoginManager realizującą logowanie i wylogowywanie
+13. Dodaj do stron sprawdzanie czy użytkownik jest zalogowany
+	13.1. Jeżeli nie jest - wyświetl komunikat i przycisk do zalogowania
+	13.2. Jeżeli jest - sprawdź czy jest adminem i wyświetl odpowiednie opcje i przycisk do wylogowania
