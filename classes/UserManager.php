@@ -58,4 +58,22 @@ class UserManager {
         $deleteLoggedInUserResult = $this->loggedInUserService->deleteBySessionId($sessionId);
         return $sessionDestroyResult && $deleteLoggedInUserResult;
     }
+
+    public function retrieveSessionId(): ?string {
+        $sessionId = null;
+        $sessionName = session_name();
+        if (isset($_COOKIE[$sessionName])) {
+            session_start();
+            $sessionId = session_id();
+        }
+        return $sessionId;
+    }
+
+    public function isUserLoggedIn(?string $sessionId): bool {
+        if ($sessionId === null) {
+            return false;
+        }
+        $loggedInUser = $this->loggedInUserService->getBySessionId($sessionId);
+        return $loggedInUser !== null;
+    }
 }
