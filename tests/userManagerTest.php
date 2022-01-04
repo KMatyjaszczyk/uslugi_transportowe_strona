@@ -2,11 +2,11 @@
 include_once '../classes/util/UserManager.php';
 include_once '../classes/service/UserService.php';
 
-echo "Create new user with login and password 'user' in db... <br>";
-$userService = new UserService();
-$createResut = $userService->create(new User(null, 'user', 'user', 'user@user.user', false, new DateTime()));
-var_dump($createResut);
-echo "<br><br>";
+// echo "Create new user with login and password 'user' in db... <br>";
+// $userService = new UserService();
+// $createResut = $userService->create(new User(null, 'user', 'user', 'user@user.user', false, new DateTime()));
+// var_dump($createResut);
+// echo "<br><br>";
 
 echo "TEST USER MANAGER CREATE<br>";
 $testUserManager = new UserManager();

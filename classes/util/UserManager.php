@@ -50,7 +50,12 @@ class UserManager {
     }
 
     public function logout(string $sessionId): bool {
-        // TODO: implement method
-        return false;
+        $sessionName = session_name();
+        if (isset($_COOKIE[$sessionName])) {
+            setcookie($sessionName, '', time() - 42000, '/');
+        }
+        $sessionDestroyResult = session_destroy();
+        $deleteLoggedInUserResult = $this->loggedInUserService->deleteBySessionId($sessionId);
+        return $sessionDestroyResult && $deleteLoggedInUserResult;
     }
 }
