@@ -61,13 +61,14 @@ echo "</div>";
                     <li class="nav-item"><a class="nav-link" href="galeria.php">Galeria</a></li>
                     <!-- Put proper options in nav bar -->
                     <?php
-                        if (!$isUserLoggedIn) {
+                        if (!$isUserLoggedIn) { // User is not  logged in
                             echo '<li class="nav-item"><a class="nav-link text-info" href="login.php">Zaloguj</a></li>';
                         } else {
-                            if ($user->getIsAdmin() == true) {
+                            if ($user->getIsAdmin() == true) { // User is Admin
                                 echo '<li class="nav-item"><a class="nav-link" href="panel_zamowien.php">Panel zamówień</a></li>';
-                            } else {
+                            } else { // User is standard user
                                 echo '<li class="nav-item"><a class="nav-link" href="rezerwacja.php">Rezerwacja</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link" href="twoje_rezerwacje.php">Twoje rezerwacje</a></li>';
                             }
                             echo '<li class="nav-item"><a class="nav-link text-info" href="processLogin.php?process=logout">Wyloguj</a></li>';
                         }
@@ -172,7 +173,6 @@ echo "</div>";
                             <li class="list-group-item">MERCEDES Sprinter 19+5</li>
                             <li class="list-group-item">MERCEDES Sprinter 19+4</li>
                         </ul>
-                        <a class="btn btn-primary mt-3" href="rezerwacja.php">Zarezerwuj już teraz!</a>
                     </div>
                 </div>
             </div>

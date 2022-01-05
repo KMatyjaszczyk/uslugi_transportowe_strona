@@ -1,3 +1,22 @@
+<?php
+include_once 'classes/LoggedInUserService.php';
+include_once 'classes/UserService.php';
+include_once 'classes/UserManager.php';
+
+$loggedInUserService = new LoggedInUserService();
+$userService = new UserService();
+$userManager = new UserManager();
+
+$sessionId = $userManager->retrieveSessionId();
+$isUserLoggedIn = $userManager->isUserLoggedIn($sessionId);
+$user = null;
+if ($isUserLoggedIn) {
+    $user = $userService->getById(
+        $loggedInUserService->getBySessionId($sessionId)->getUserId()
+    );
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -16,6 +35,21 @@
 </head>
 
 <body>
+
+<?php
+// For test purposes
+echo '<div style="display: none;">';
+echo 'sessionId: ';
+var_dump($sessionId);
+echo "<br>";
+echo 'isUserLoggedIn: ';
+var_dump($isUserLoggedIn);
+echo "<br>";
+echo 'user: ';
+var_dump($user);
+echo "</div>";
+?>
+
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -27,7 +61,20 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">O nas</a></li>
                     <li class="nav-item"><a class="nav-link active" href="galeria.php">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="rezerwacja.php">Rezerwacja</a></li>
+                    <!-- Put proper options in nav bar -->
+                    <?php
+                        if (!$isUserLoggedIn) { // User is not  logged in
+                            echo '<li class="nav-item"><a class="nav-link text-info" href="login.php">Zaloguj</a></li>';
+                        } else {
+                            if ($user->getIsAdmin() == true) { // User is Admin
+                                echo '<li class="nav-item"><a class="nav-link" href="panel_zamowien.php">Panel zamówień</a></li>';
+                            } else { // User is standard user
+                                echo '<li class="nav-item"><a class="nav-link" href="rezerwacja.php">Rezerwacja</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link" href="twoje_rezerwacje.php">Twoje rezerwacje</a></li>';
+                            }
+                            echo '<li class="nav-item"><a class="nav-link text-info" href="processLogin.php?process=logout">Wyloguj</a></li>';
+                        }
+                    ?>
                 </ul>
             </div>
         </div>
