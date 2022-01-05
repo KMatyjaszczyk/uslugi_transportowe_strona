@@ -91,35 +91,45 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                         </div>
                     </div>
                 </section>
+                <!-- Reservation success communicate -->
+                <?php
+                if (isset($_GET['reservationResult']) && $_GET['reservationResult'] === 'success') {
+                    echo '
+                        <div class="row mx-5 mb-3">
+                            <span class="text-success">Pomyślnie dokonano rezerwacji!</span>
+                        </div>
+                    ';
+                }
+                ?>
                 <!-- Form-->
                 <div class="mx-5 mb-5">
                     <form action="processReservation.php" method="post">
                         <!-- Client name-->
                         <label for="clientName" class="form-label mb-2">Imię i nazwisko lub nazwa firmy</label>
-                        <input type="text" class="form-control mb-3" id="clientName" name="clientName" placeholder="Imię i nazwisko (nazwa firmy)">
+                        <input type="text" class="form-control mb-3" id="clientName" name="clientName" placeholder="Imię i nazwisko (nazwa firmy)" required value="AS Bytom Sp. z o.o.">
                         <!-- Client email-->
                         <label for="clientEmail" class="form-label mb-2">Adres email</label>
-                        <input type="clientEmail" class="form-control mb-3" id="clientEmail" name="clientEmail" placeholder="Email">
+                        <input type="email" class="form-control mb-3" id="clientEmail" name="clientEmail" placeholder="Email" required value="kontakt@as-bytom.pl">
                         <!-- Date time-->
                         <div class="row">
                             <div class="col">
                                 <label for="departureDateDate" class="form-label mb-2">Data wyjazdu</label>
-                                <input type="date" class="form-control mb-3" id="departureDateDate"  name="departureDateDate">
+                                <input type="date" class="form-control mb-3" id="departureDateDate" name="departureDateDate" required value="2022-01-10">
                             </div>
                             <div class="col">
                                 <label for="departureDateTime" class="form-label mb-2">Godzina</label>
-                                <input type="time" class="form-control mb-3" id="departureDateTime" name="departureDateTime">
+                                <input type="time" class="form-control mb-3" id="departureDateTime" name="departureDateTime" required value="21:37">
                             </div>
                         </div>
                         <!-- Destination-->
                         <label for="destination" class="form-label mb-2">Cel podróży</label>
-                        <input type="text" class="form-control mb-3" id="destination" name="destination" placeholder="Miejscowość">
+                        <input type="text" class="form-control mb-3" id="destination" name="destination" placeholder="Miejscowość" required pattern="^[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż][A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż \.\-]{2,}$" value="Ciechocinek">
                         <!-- Journey form-->
                         <div class="row">
                             <span class="form-label mb-2">Forma podróży</span>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" name="journeyForm" id="form1" value="wedding">
+                            <input type="radio" class="form-check-input" name="journeyForm" id="form1" value="wedding" required>
                             <label for="form1" class="form-check-label">Wesele</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -131,7 +141,7 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                             <label for="form3" class="form-check-label">Wycieczka</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" name="journeyForm" id="form4" value="pilgrimage">
+                            <input type="radio" class="form-check-input" name="journeyForm" id="form4" value="pilgrimage" checked>
                             <label for="form4" class="form-check-label">Pielgrzymka</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -142,7 +152,7 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                         <div class="row mt-3">
                             <label for="autobus" class="form-label">Autobus</label>
                         </div>
-                        <select class="form-control form-select mb-3" id="vehicle" name="vehicle">
+                        <select class="form-control form-select mb-3" id="vehicle" name="vehicle" required>
                             <option value="neoplan">NEOPLAN Euroliner 51+1</option>
                             <option value="renault">RENAULT Carrier 35+25</option>
                             <option value="volkswagen">VOLKSWAGEN LT 19+5</option>
@@ -154,7 +164,7 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                             <span class="form-label mb-2">Dodatkowe usługi</span>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="additionalServices[]" id="service1" value="buffet">
+                            <input type="checkbox" class="form-check-input" name="additionalServices[]" id="service1" value="buffet" checked>
                             <label for="service1" class="form-check-label">Bufet</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -162,10 +172,10 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                             <label for="service2" class="form-check-label">Dwóch kierowców</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="additionalServices[]" id="service3" value="soundSystem">
+                            <input type="checkbox" class="form-check-input" name="additionalServices[]" id="service3" value="soundSystem" checked>
                             <label for="service3" class="form-check-label">Zestaw nagłaśniający</label>
                         </div>
-                        <!-- Rezerwacja-->
+                        <!-- Reservation -->
                         <div class="row"></div>
                         <input type="submit" class="btn btn-primary mt-3" id="reservation" value="Rezerwuj">
                         <input type="reset" class="btn btn-secondary mt-3" id="clean" value="Resetuj">

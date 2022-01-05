@@ -79,6 +79,15 @@ TODO:
 	+13.2. Jeżeli jest - sprawdź czy jest adminem i wyświetl odpowiednie opcje i przycisk do wylogowania
 +14. Przetestuj logowanie dokładnie na jednej stronie
 15. Zaimplementuj logowanie na każdej stronie
-	15.1. Logowanie na stronie Rezerwacja:
+	+15.1. Logowanie na stronie Rezerwacja:
 		- strona dostępna jedynie dla zwykłego usera, jeżeli jest niezalogowany lub admin 
 			-> wrzucenie do indexu z odpowiednim getem
+	15.2. Logowanie na stronie Twoje rezerwacje
+	15.3. Logowanie na stronie Panel zamówień
++16. Zaimplementuj formularz rezerwacyjny:
+	+16.1. Przepisz nazwy pól
+	+16.2. Dodaj HTMLową walidację
+	+16.3. Zaimplementuj procesowanie rezerwacji
+		+16.3.1. Filtrowanie danych
+		+16.3.2. Dodanie nowej rezerwacji do repo
+
