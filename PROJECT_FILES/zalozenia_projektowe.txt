@@ -75,7 +75,10 @@ TODO:
 +11. Stwórz serwisy odpowiadające na żądania (przynajmniej dla orderu), zacznij od usera
 +12. Utwórz klasę UserLoginManager realizującą logowanie i wylogowywanie
 +13. Dodaj do strony indexowej sprawdzanie czy użytkownik jest zalogowany
-	13.1. Jeżeli nie jest - przycisk do zalogowania
-	13.2. Jeżeli jest - sprawdź czy jest adminem i wyświetl odpowiednie opcje i przycisk do wylogowania
-14. Przetestuj logowanie dokładnie na jednej stronie
+	+13.1. Jeżeli nie jest - przycisk do zalogowania
+	+13.2. Jeżeli jest - sprawdź czy jest adminem i wyświetl odpowiednie opcje i przycisk do wylogowania
++14. Przetestuj logowanie dokładnie na jednej stronie
 15. Zaimplementuj logowanie na każdej stronie
+	15.1. Logowanie na stronie Rezerwacja:
+		- strona dostępna jedynie dla zwykłego usera, jeżeli jest niezalogowany lub admin 
+			-> wrzucenie do indexu z odpowiednim getem

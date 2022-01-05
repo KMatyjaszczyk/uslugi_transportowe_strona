@@ -23,7 +23,6 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">O nas</a></li>
                     <li class="nav-item"><a class="nav-link" href="galeria.php">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="rezerwacja.php">Rezerwacja</a></li>
                 </ul>
             </div>
         </div>

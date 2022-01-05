@@ -1,3 +1,26 @@
+<?php
+include_once 'classes/LoggedInUserService.php';
+include_once 'classes/UserService.php';
+include_once 'classes/UserManager.php';
+
+$loggedInUserService = new LoggedInUserService();
+$userService = new UserService();
+$userManager = new UserManager();
+
+$sessionId = $userManager->retrieveSessionId();
+$isUserLoggedIn = $userManager->isUserLoggedIn($sessionId);
+$user = null;
+if ($isUserLoggedIn) {
+    $user = $userService->getById(
+        $loggedInUserService->getBySessionId($sessionId)->getUserId()
+    );
+}
+
+if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
+    header('Location: index.php?status=reservationForbidden');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -14,6 +37,21 @@
 </head>
 
 <body>
+
+<?php
+// For test purposes
+echo '<div style="display: none;">';
+echo 'sessionId: ';
+var_dump($sessionId);
+echo "<br>";
+echo 'isUserLoggedIn: ';
+var_dump($isUserLoggedIn);
+echo "<br>";
+echo 'user: ';
+var_dump($user);
+echo "</div>";
+?>
+
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -27,6 +65,8 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">O nas</a></li>
                     <li class="nav-item"><a class="nav-link" href="galeria.php">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link active" href="rezerwacja.php">Rezerwacja</a></li>
+                    <li class="nav-item"><a class="nav-link" href="twoje_rezerwacje.php">Twoje rezerwacje</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="processLogin.php?process=logout">Wyloguj</a></li>
                 </ul>
             </div>
         </div>
