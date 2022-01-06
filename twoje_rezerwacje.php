@@ -100,6 +100,15 @@ $orders = $orderService->getByUserId($user->getId());
                         </div>
                     </div>
                 </section>
+                <?php
+                if (isset($_GET['changeReservationStatusResult']) && $_GET['changeReservationStatusResult'] === 'success') {
+                    echo '
+                    <div class="mx-5 mb-3">
+                        <span class="text-success">Zmieniono status zamówienia</span>
+                    </div>
+                    ';
+                } 
+                ?>
                 <!-- Reservations display -->
                 <div class="mx-5 mb-5">
                     <?php
@@ -127,7 +136,9 @@ $orders = $orderService->getByUserId($user->getId());
                                             $table .= $orderService->mapStatusToText($order->getStatus());
                                         $table .= '</td>';
                                         $table .= '<td>';
+                                        if ($order->getStatus() !== Order::$STATUS_CANCELLED && $order->getStatus() !== Order::$STATUS_REALISED) {
                                             $table .= '<a href="changeReservationStatus.php?status=2&orderId='. $order->getId() .'" class="btn btn-danger">Anuluj</a>';
+                                        }
                                         $table .= '</td>';
                                     $table .= '</tr>';
                                 }
