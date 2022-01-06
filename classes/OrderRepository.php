@@ -153,13 +153,14 @@ class OrderRepository {
     }
 
     public function getByClientNameOrDestination(string $clientNameOrDestination): ?array {
+        $preparedClientNameOrDestination = '%'.$clientNameOrDestination.'%';
         $statement = $this->connection->prepare(
             "SELECT `id`, `userId`, `clientName`, `clientEmail`, `departureDate`, `destination`,
                 `journeyForm`, `vehicle`, `additionalServices`, `status`, `creationDate`,
                 `lastUpdateDate`
             FROM `orders`
             WHERE `clientName` LIKE ? OR `destination` LIKE ?");
-        $statement->bind_param("ss", $clientNameOrDestination, $clientNameOrDestination);
+        $statement->bind_param("ss", $preparedClientNameOrDestination, $preparedClientNameOrDestination);
         $statement->execute();
         $result = $statement->get_result();
         // var_dump($result); // For test purposes

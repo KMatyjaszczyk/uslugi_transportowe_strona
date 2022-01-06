@@ -23,8 +23,27 @@ if (!$isUserLoggedIn || $user->getIsAdmin() === false) {
     header('Location: index.php?status=orderPanelForbidden');
 }
 
-$orders = $orderService->getAll();
-
+$orders = null;
+if (isset($_POST['submit']) && $_POST['submit'] === 'Szukaj') {
+    $validationArguments = [
+        'search' => FILTER_SANITIZE_ADD_SLASHES
+    ];
+    $filteredData = filter_input_array(INPUT_POST, $validationArguments);
+    $errors = "";
+    foreach ($filteredData as $key => $value) {
+        if ($value === false or $value === null) {
+            $errors .= $key . " ";
+        }
+    }
+    if ($errors === "") {
+        $clientNameOrDestination = $filteredData['search'];
+        $orders = $orderService->getByClientNameOrDestination($clientNameOrDestination);
+    } else {
+        $orders = $orderService->getAll();
+    }   
+} else {
+    $orders = $orderService->getAll();
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +77,9 @@ $orders = $orderService->getAll();
     echo "<br>";
     echo 'orders: ';
     var_dump($orders);
+    echo "</div>";
+    echo 'POST: ';
+    var_dump($_POST);
     echo "</div>";
     ?>
 
@@ -107,12 +129,30 @@ $orders = $orderService->getAll();
                     </div>
                     ';
                 } 
+                if (isset($_GET['deleteReservationResult']) && $_GET['deleteReservationResult'] === 'success') {
+                    echo '
+                    <div class="mx-5 mb-3">
+                        <span class="text-success">Usunięto zamówienie</span>
+                    </div>
+                    ';
+                }
                 ?>
+                <!-- Search panel -->
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                    <form action="panel_zamowien.php" method="post">
+                        <input type="text" name="search" class="form-control mb-3"
+                            placeholder="Wyszukaj po rezerwującym lub celu podróży">
+                        <input type="submit" name="submit" value="Szukaj" class="btn btn-primary">
+                        <a href="panel_zamowien.php" class="btn btn-secondary">Wszystkie</a>
+                    </form>
+                    </div>
+                </div>
                 <!-- Reservations display -->
                 <div class="mx-5 mb-5">
                     <?php
                     if ($orders === null) {
-                        echo '<div class="mt-2">Nie dokonano jeszcze żadnych rezerwacji</div>';
+                        echo '<div class="mt-2">Nie znaleziono rezerwacji</div>';
                     } else {
                         $table = '<div class="mt-2 table-responsive">';
                             $table .= '<table class="table table-hover">';
