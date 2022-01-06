@@ -95,6 +95,6 @@ TODO:
 	- anulowanie (trzeba sprawdzić czy zamówienie jest anulowane przez odpowiedniego użytkownika)
 19. Zaimplementuj panel zamówień
 	+19.1. Wyświetlanie wszystkich zamówień
-	19.2. Zmiana statusów
+	+19.2. Zmiana statusów
 	+19.3. Usuwanie zamówień
 	19.4. Wyszukiwanie po rezerwującym lub celu podróży
