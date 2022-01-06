@@ -78,7 +78,7 @@ TODO:
 	+13.1. Jeżeli nie jest - przycisk do zalogowania
 	+13.2. Jeżeli jest - sprawdź czy jest adminem i wyświetl odpowiednie opcje i przycisk do wylogowania
 +14. Przetestuj logowanie dokładnie na jednej stronie
-15. Zaimplementuj logowanie na każdej stronie
++15. Zaimplementuj logowanie na każdej stronie
 	+15.1. Logowanie na stronie Rezerwacja:
 		- strona dostępna jedynie dla zwykłego usera, jeżeli jest niezalogowany lub admin 
 			-> wrzucenie do indexu z odpowiednim getem
@@ -93,8 +93,10 @@ TODO:
 +17. Zaimplementuj wyświetlanie rezerwacji użytkownika
 +18. Zaimplementuj manipulację rezerwacjami użytkownika
 	- anulowanie (trzeba sprawdzić czy zamówienie jest anulowane przez odpowiedniego użytkownika)
-19. Zaimplementuj panel zamówień
++19. Zaimplementuj panel zamówień
 	+19.1. Wyświetlanie wszystkich zamówień
 	+19.2. Zmiana statusów
 	+19.3. Usuwanie zamówień
-	19.4. Wyszukiwanie po rezerwującym lub celu podróży
+	+19.4. Wyszukiwanie po rezerwującym lub celu podróży
+20. PRZETESTUJ RÓŻNE SCENARIUSZE NADUŻYĆ
+21. Sprawdź bezpieczeństwo na ataki
