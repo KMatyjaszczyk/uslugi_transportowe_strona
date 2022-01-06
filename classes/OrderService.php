@@ -41,4 +41,24 @@ class OrderService {
     public function deleteById(int $orderId): bool {
         return $this->orderRepository->deleteById($orderId);
     }
+
+    public function mapStatusToText(int $status): string {
+        switch ($status) {
+            case Order::$STATUS_CREATED:
+                return "Utworzona";
+                break;
+            case Order::$STATUS_CANCELLED:
+                return "Anulowana";
+                break;
+            case Order::$STATUS_ACCEPTED:
+                return "W realizacji";
+                break;
+            case Order::$STATUS_REALISED:
+                return "Zrealizowana";
+                break;
+            default:
+                return "Niepoprawny stan";
+                break;
+        }
+    }
 }
