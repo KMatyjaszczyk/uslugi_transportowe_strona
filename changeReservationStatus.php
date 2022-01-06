@@ -60,21 +60,25 @@ if ($order === null) {
 echo 'status to be changed: ' . $statusToBeChanged . '<br>';
 echo 'order->getStatus(): ' . $order->getStatus() . '<br>';
 
-if ($statusToBeChanged === Order::$STATUS_CANCELLED) {
-    // check if user changes his own order
-    if ($order->getUserId() !==  $user->getId()) {
-        header('Location: twoje_rezerwacje.php?changeReservationStatusResult=notYourReservation');
-    }
-
-    // check if order was already cancelled or finished
-    if ($order->getStatus() === Order::$STATUS_CANCELLED || $order->getStatus() === Order::$STATUS_REALISED) {
-        header('Location: twoje_rezerwacje.php?changeReservationStatusResult=alreadyCancelledOrRealised');
-    } else {
-        $statusUpdateResult = $orderService->updateStatus($orderId, $statusToBeChanged);
-        if ($statusUpdateResult === true) {
-            header('Location: twoje_rezerwacje.php?changeReservationStatusResult=success');
+if ($user->getIsAdmin() === false) { // standard user processing
+    if ($statusToBeChanged === Order::$STATUS_CANCELLED) {
+        // check if user changes his own order
+        if ($order->getUserId() !==  $user->getId()) {
+            header('Location: twoje_rezerwacje.php?changeReservationStatusResult=notYourReservation');
+        }
+    
+        // check if order was already cancelled or finished
+        if ($order->getStatus() === Order::$STATUS_CANCELLED || $order->getStatus() === Order::$STATUS_REALISED) {
+            header('Location: twoje_rezerwacje.php?changeReservationStatusResult=alreadyCancelledOrRealised');
         } else {
-            header('Location: twoje_rezerwacje.php?changeReservationStatusResult=fail');
+            $statusUpdateResult = $orderService->updateStatus($orderId, $statusToBeChanged);
+            if ($statusUpdateResult === true) {
+                header('Location: twoje_rezerwacje.php?changeReservationStatusResult=success');
+            } else {
+                header('Location: twoje_rezerwacje.php?changeReservationStatusResult=fail');
+            }
         }
     }
+} else { // admin processing
+    // TODO: implement
 }

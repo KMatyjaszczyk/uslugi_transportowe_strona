@@ -83,7 +83,7 @@ TODO:
 		- strona dostępna jedynie dla zwykłego usera, jeżeli jest niezalogowany lub admin 
 			-> wrzucenie do indexu z odpowiednim getem
 	+15.2. Logowanie na stronie Twoje rezerwacje
-	15.3. Logowanie na stronie Panel zamówień
+	+15.3. Logowanie na stronie Panel zamówień
 +16. Zaimplementuj formularz rezerwacyjny:
 	+16.1. Przepisz nazwy pól
 	+16.2. Dodaj HTMLową walidację
@@ -91,5 +91,10 @@ TODO:
 		+16.3.1. Filtrowanie danych
 		+16.3.2. Dodanie nowej rezerwacji do repo
 +17. Zaimplementuj wyświetlanie rezerwacji użytkownika
-18. Zaimplementuj manipulację rezerwacjami użytkownika
++18. Zaimplementuj manipulację rezerwacjami użytkownika
 	- anulowanie (trzeba sprawdzić czy zamówienie jest anulowane przez odpowiedniego użytkownika)
+19. Zaimplementuj panel zamówień
+	+19.1. Wyświetlanie wszystkich zamówień
+	19.2. Zmiana statusów
+	+19.3. Usuwanie zamówień
+	19.4. Wyszukiwanie po rezerwującym lub celu podróży

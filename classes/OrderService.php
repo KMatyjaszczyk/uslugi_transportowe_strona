@@ -51,7 +51,7 @@ class OrderService {
                 return "Anulowana";
                 break;
             case Order::$STATUS_ACCEPTED:
-                return "W realizacji";
+                return "Przyjęta";
                 break;
             case Order::$STATUS_REALISED:
                 return "Zrealizowana";
