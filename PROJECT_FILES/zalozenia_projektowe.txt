@@ -100,3 +100,4 @@ TODO:
 	+19.4. Wyszukiwanie po rezerwującym lub celu podróży
 20. PRZETESTUJ RÓŻNE SCENARIUSZE NADUŻYĆ
 21. Sprawdź bezpieczeństwo na ataki
+22. Wyczyść kod ze zbędnych komentarzy
