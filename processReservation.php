@@ -60,6 +60,7 @@ foreach ($filteredData as $key => $value) {
 
 if ($errors !== "") {
     header('Location: rezerwacja.php?reservationResult=fail');
+    die();
 }
 
 $departureDate = $filteredData['departureDateDate'] . 
