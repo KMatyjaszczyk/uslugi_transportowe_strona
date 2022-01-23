@@ -59,7 +59,7 @@
                             <input type="text" class="form-control mb-3" id="login" name="login" placeholder="Login">
                             <!-- password -->
                             <label for="password" class="form-label mb-2">Hasło</label>
-                            <input type="text" class="form-control mb-3" id="password" name="password" placeholder="Hasło">
+                            <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Hasło">
                             <!-- Login failed communicate -->
                             <?php
                                 if (isset($_GET['loginResult']) && $_GET['loginResult'] === 'fail') {
