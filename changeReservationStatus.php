@@ -106,6 +106,9 @@ if ($user->getIsAdmin() === false) { // standard user processing
                 die();
             }
         }
+    } else {
+        header('Location: twoje_rezerwacje.php?changeReservationStatusResult=forbiddenOperation');
+        die();
     }
 } else { // admin processing
     $statusUpdateResult = $orderService->updateStatus($orderId,  $statusToBeChanged);
