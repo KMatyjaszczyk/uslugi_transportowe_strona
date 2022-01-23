@@ -202,7 +202,7 @@ echo "</div>";
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; KM 2021</p>
+            <p class="m-0 text-center text-white">Copyright &copy; KM 2022</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
@@ -211,8 +211,6 @@ echo "</div>";
     <script src="js/scripts.js"></script>
     <!-- jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Lightbox-->
-    <script src="js/lightbox.js"></script>
 </body>
 
 </html>
