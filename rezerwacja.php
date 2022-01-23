@@ -100,6 +100,13 @@ if (!$isUserLoggedIn || $user->getIsAdmin() == true) {
                         </div>
                     ';
                 }
+                if (isset($_GET['reservationResult']) && $_GET['reservationResult'] === 'fail') {
+                    echo '
+                        <div class="row mx-5 mb-3">
+                            <span class="text-danger">Nie udało się dokonać rezerwacji. Sprawdź wprowadzone dane.</span>
+                        </div>
+                    ';
+                }
                 ?>
                 <!-- Form-->
                 <div class="mx-5 mb-5">

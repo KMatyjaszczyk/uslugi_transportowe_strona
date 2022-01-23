@@ -59,7 +59,7 @@ foreach ($filteredData as $key => $value) {
 }
 
 if ($errors !== "") {
-    header('Location: index.php?reservationResult=fail');
+    header('Location: rezerwacja.php?reservationResult=fail');
 }
 
 $departureDate = $filteredData['departureDateDate'] . 
@@ -78,6 +78,11 @@ $order = new Order(
     null,
     null
 );
+
+if ($order->getDepartureDate() < new DateTime()) {
+    header('Location: rezerwacja.php?reservationResult=fail');
+    die();
+}
 
 $orderCreateresult = $orderService->create($order);
 header('Location: rezerwacja.php?reservationResult=success');
