@@ -40,12 +40,15 @@ $validationArguments = [
             '/^[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż][A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż \.\-]{2,}$/']
     ],
     'journeyForm' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'vehicle' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'additionalServices' => [
-        'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'flags' => FILTER_REQUIRE_ARRAY
-    ]
+    'vehicle' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
 ];
+
+$additionalServices = null;
+if ($_POST['additionalServices'] === null) {
+    $additionalServices = [];
+} else {
+    $additionalServices = $_POST['additionalServices'];
+}
 
 $filteredData = filter_input_array(INPUT_POST, $validationArguments);
 $errors = "";
@@ -70,7 +73,7 @@ $order = new Order(
     $filteredData['destination'],
     $filteredData['journeyForm'],
     $filteredData['vehicle'],
-    $filteredData['additionalServices'],
+    $additionalServices,
     Order::$STATUS_CREATED,
     null,
     null
