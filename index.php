@@ -33,21 +33,6 @@ if ($isUserLoggedIn) {
 </head>
 
 <body>
-
-<?php
-// For test purposes
-echo '<div style="display: none;">';
-echo 'sessionId: ';
-var_dump($sessionId);
-echo "<br>";
-echo 'isUserLoggedIn: ';
-var_dump($isUserLoggedIn);
-echo "<br>";
-echo 'user: ';
-var_dump($user);
-echo "</div>";
-?>
-
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">

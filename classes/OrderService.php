@@ -7,7 +7,6 @@ class OrderService {
     
     public function __construct() {
         $this->orderRepository = new OrderRepository;
-        // echo "Order service created successfully!<br>"; // For test purposes
     }
 
     public function getAll(): ?array {

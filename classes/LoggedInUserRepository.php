@@ -18,12 +18,6 @@ class LoggedInUserRepository {
             echo 'Failed to change encryption type to UTF8<br>';
             exit();
         }
-
-        // For test purposes
-        // echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
-        //     . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
-        //     . ', ' . DbConfiguration::$DB_PORT . '<br>';
-        // echo 'Connection to database succeeded<br>';
     }
 
     public function __destruct() {
@@ -39,7 +33,6 @@ class LoggedInUserRepository {
         $statement->execute();
         $result = $statement->get_result();
         $loggedInUserFromResult = $result->fetch_object();
-        // var_dump($loggedInUserFromResult); // For test purposes
         if ($loggedInUserFromResult === null) {
             return null;
         } else {
@@ -59,7 +52,6 @@ class LoggedInUserRepository {
         $statement->bind_param("s", $userId);
         $statement->execute();
         $result = $statement->get_result();
-        // var_dump($result); // For test purposes
         if ($result->num_rows == 0) {
             echo "There is no records for user with ID: $userId<br>";
             return null;
@@ -94,7 +86,6 @@ class LoggedInUserRepository {
             echo "Failure on saving logged in user to database<br>";
             return false;
         } else {
-            // echo "User created successfully!<br>"; // For test purposes
             return true;
         }
     }
@@ -109,7 +100,6 @@ class LoggedInUserRepository {
             echo "Deleting logged in user by session ID failed... <br>";
             return false;
         } else {
-            echo "Deleting logged in user by session ID ended successfully! <br>"; // For test purposes
             return true;
         }
     }
@@ -124,7 +114,6 @@ class LoggedInUserRepository {
             echo "Deleting logged in user by user ID failed... <br>";
             return false;
         } else {
-            echo "Deleting logged in user by user ID ended successfully! <br>"; // For test purposes
             return true;
         }
     }

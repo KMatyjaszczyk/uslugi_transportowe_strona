@@ -7,7 +7,6 @@ class UserService {
 
     public function __construct() {
         $this->userRepository = new UserRepository();
-        // echo "User service created successfully!<br>"; // For test purposes
     }
 
     public function getById(int $id): ?User {

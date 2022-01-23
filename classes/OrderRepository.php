@@ -18,12 +18,6 @@ class OrderRepository {
             echo 'Failed to change encryption type to UTF8<br>';
             exit();
         }
-
-        // For test purposes
-        // echo DbConfiguration::$DB_HOSTNAME . ', ' . DbConfiguration::$DB_USERNAME
-        //     . ', ' . DbConfiguration::$DB_PASSWORD . ', ' . DbConfiguration::$DB_DATABASE
-        //     . ', ' . DbConfiguration::$DB_PORT . '<br>';
-        // echo 'Connection to database succeeded<br>';
     }
 
     public function __destruct() {
@@ -38,10 +32,8 @@ class OrderRepository {
             FROM `orders`");
         $statement->execute();
         $result = $statement->get_result();
-        // var_dump($result); // For test purposes
 
         if ($result->num_rows == 0) {
-            //echo "There is no orders...<br>"; // For test purposes
             return null;
         } else {
             $orders = [];
@@ -82,7 +74,6 @@ class OrderRepository {
         $statement->execute();
         $result = $statement->get_result();
         $orderFromResult = $result->fetch_object();
-        // var_dump($orderFromResult); // For test purposes
 
         if ($orderFromResult === null) {
             return null;
@@ -119,10 +110,8 @@ class OrderRepository {
         $statement->bind_param("i", $userId);
         $statement->execute();
         $result = $statement->get_result();
-        // var_dump($result); // For test purposes
 
         if ($result->num_rows == 0) {
-            // echo "There is no orders with user ID = $userId...<br>"; // For test purposes
             return null;
         } else {
             $orders = [];
@@ -163,10 +152,8 @@ class OrderRepository {
         $statement->bind_param("ss", $preparedClientNameOrDestination, $preparedClientNameOrDestination);
         $statement->execute();
         $result = $statement->get_result();
-        // var_dump($result); // For test purposes
 
         if ($result->num_rows == 0) {
-            // echo "There is no orders with specified client name or destination...<br>"; // For test purposes
             return null;
         } else {
             $orders = [];
@@ -230,7 +217,6 @@ class OrderRepository {
             echo "Failure on saving created order to database... <br>";
             return false;
         } else {
-            //echo "Order created successfully!<br>"; // For test purposes
             return true;
         }
     }
@@ -271,7 +257,6 @@ class OrderRepository {
             echo "Failure on updating order on database... <br>";
             return false;
         } else {
-            // echo "Order updated successfully!<br>"; // For test purposes
             return true;
         }
     }
@@ -293,7 +278,6 @@ class OrderRepository {
             echo "Failure on updating order on database... <br>";
             return false;
         } else {
-            // echo "Order updated successfully!<br>"; // For test purposes
             return true;
         }
     }
@@ -308,7 +292,6 @@ class OrderRepository {
             echo "Failure on deleting order from database with ID: $orderId... <br>";
             return false;
         } else {
-            // echo "Order with ID: $orderId deleted successfully!<br>"; // For test purposes
             return true;
         }
     }

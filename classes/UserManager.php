@@ -11,7 +11,6 @@ class UserManager {
     public function __construct() {
         $this->userService = new UserService();
         $this->loggedInUserService = new LoggedInUserService();
-        // echo "User Manager created successfully!<br>"; // For test purposes
     }
 
     public function login(): ?int {

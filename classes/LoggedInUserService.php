@@ -7,7 +7,6 @@ class LoggedInUserService {
 
     public function __construct() {
         $this->loggedInUserRepository = new LoggedInUserRepository();
-        // echo "Logged in User service created successfully!<br>"; // For test purposes
     }
 
     public function getBySessionId(string $sessionId): ?LoggedInUser {
