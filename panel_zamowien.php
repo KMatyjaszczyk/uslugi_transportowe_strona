@@ -96,7 +96,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'Szukaj') {
                 <section class="py-5">
                     <div class="mt-5">
                         <div class="container">
-                            <h2>Twoje rezerwacje</h2>
+                            <h2>Panel zamówień</h2>
                         </div>
                     </div>
                 </section>
